@@ -1,0 +1,53 @@
+.jvwp-media-uploader {
+    border:        1px solid #DDD;
+    box-shadow:    rgba(0, 0, 0, 0.0666667) 0 1px 2px 0;
+    border-radius: 2px;
+    padding:       8px;
+    margin:        12px 0;
+    height:        50px;
+    position:      relative;
+    background:    white;
+}
+
+.jvwp-media-uploader span {
+    position:  absolute;
+    left:      68px;
+    top:       50%;
+    transform: translateY(-50%);
+}
+
+.jvwp-media-uploader:not(.set):hover {
+    background: #ecf2f4;
+    cursor:     pointer;
+}
+
+.jvwp-media-uploader ul.actions {
+    margin:    0;
+    position:  absolute;
+    top:       50%;
+    right:     14px;
+    transform: translateY(-50%);
+}
+
+.jvwp-media-uploader ul.actions li {
+    margin-bottom: 0;
+    display:       inline-block;
+    cursor:        pointer;
+}
+
+.jvwp-media-uploader ul.actions li i.icon-cancel:before {
+    -webkit-transform: scale(1.2);
+}
+
+.jvwp-media-uploader .thumbnail {
+    float:           left;
+    width:           50px;
+    height:          50px;
+    background:      no-repeat center;
+    background-size: contain;
+    border-radius:   2px;
+}
+
+.jvwp-media-uploader .thumbnail.not-set {
+    background-color: rgba(0, 0, 0, 0.1);
+}

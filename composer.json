@@ -1,0 +1,17 @@
+{
+  "name":        "jmversteeg/jvwp-web",
+  "version":     "0.0.1",
+  "description": "Front-end resources for the JVWP library",
+  "license":     "MIT",
+  "authors":     [
+    {
+      "name":     "jmversteeg",
+      "email":    "janmerijnversteeg@gmail.com",
+      "homepage": "https://github.com/jmversteeg"
+    }
+  ],
+  "type":        "wordpress-muplugin",
+  "require":     {
+    "composer/installers": "~1.0"
+  }
+}
