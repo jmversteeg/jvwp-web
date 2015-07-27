@@ -11,6 +11,7 @@
         this.$reprElement = $('[data-field-id="' + $element.attr('id') + '"]');
 
         this.$thumbnail = this.$reprElement.find('.thumbnail');
+        this.$filename = this.$reprElement.find('.filename');
         this.$remove = this.$reprElement.find('.remove');
         this.$reprElement.click(this.upload.bind(this));
         this.$remove.click(this.remove.bind(this));
@@ -89,7 +90,10 @@
             this.$thumbnail.addClass('not-set');
             this.$remove.hide();
         }
-        this.$thumbnail.css('background-image', 'url(\'' + attachmentUrl + '\')');
+        if (this.$thumbnail.is('.image-thumbnail'))
+            this.$thumbnail.css('background-image', 'url(\'' + attachmentUrl + '\')');
+        if (this.$filename)
+            this.$filename.text(attachmentUrl.split(/[\\/]/).pop());
         this.$element.val(attachmentId);
 
     };

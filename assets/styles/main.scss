@@ -1,4 +1,4 @@
-.jvwp-media-uploader, .jvwp-pdf-uploader {
+.jvwp-media-uploader, .jvwp-file-uploader {
   border:        1px solid #ddd;
   box-shadow:    rgba(0, 0, 0, 0.0666667) 0 1px 2px 0;
   border-radius: 2px;
@@ -7,11 +7,18 @@
   height:        50px;
   position:      relative;
   background:    white;
-  span {
-    position:  absolute;
-    left:      68px;
-    top:       50%;
-    transform: translateY(-50%);
+  div.labels {
+    position:    absolute;
+    left:        50px;
+    top:         50%;
+    margin-left: 18px;
+    transform:   translateY(-50%);
+    span {
+      display: block;
+    }
+    span.label {
+      font-weight: bold;
+    }
   }
   .thumbnail {
     float:           left;
