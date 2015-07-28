@@ -2,11 +2,23 @@
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var concat = require('gulp-concat');
+var autoPrefixer = require('gulp-autoprefixer');
+var streamQueue = require('streamqueue');
 
 gulp.task('styles', function () {
-    return gulp.src('./assets/styles/main.scss')
-        .pipe(sass())
+
+    var scss = gulp.src(['./assets/styles/main.scss'])
+        .pipe(sass());
+
+    var css = gulp.src(['./assets/fonts/fontello/css/jvwp-embedded.css']);
+
+    return streamQueue({objectMode: true},
+        css, scss)
+        .pipe(concat('main.css'))
+        .pipe(autoPrefixer())
         .pipe(gulp.dest('./build'));
+
 });
 
 gulp.task('scripts', function () {

@@ -1,3 +1,35 @@
+@mixin extension($extension, $icon-code) {
+  &:not(.not-set) {
+    &[data-file-extension="#{$extension}"] {
+      &:after {
+        font-family:     "jvwp";
+        font-style:      normal;
+        font-weight:     normal;
+        speak:           none;
+        display:         inline-block;
+        text-decoration: inherit;
+        width:           1em;
+        text-align:      center;
+        font-variant:    normal;
+        text-transform:  none;
+        line-height:     1em;
+        content:         $icon-code;
+        position:        absolute;
+        top:             50%;
+        left:            50%;
+        transform:       translate(-50%, -50%);
+        font-size:       20px;
+        color:           #aaa;
+        margin:          0;
+      }
+    }
+  }
+}
+
+@mixin file-thumbnail {
+  @include extension('pdf', '\e800');
+}
+
 .jvwp-media-uploader, .jvwp-file-uploader {
   border:        1px solid #ddd;
   box-shadow:    rgba(0, 0, 0, 0.0666667) 0 1px 2px 0;
@@ -27,8 +59,12 @@
     background:      no-repeat center;
     background-size: contain;
     border-radius:   2px;
+    position:        relative;
     &.not-set {
       background-color: rgba(0, 0, 0, 0.1);
+    }
+    &.icon-file-thumbnail {
+      @include file-thumbnail;
     }
   }
   &:not(.set):hover {

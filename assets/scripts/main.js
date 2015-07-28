@@ -66,6 +66,8 @@
      */
     MediaUploader.prototype.upload = function (e) {
 
+        if ($(e.target).is('a.filename'))
+            return;
         e.preventDefault();
         if (!this.attachment) {
             this.custom_uploader = this.createUploader();
@@ -90,12 +92,19 @@
             this.$thumbnail.addClass('not-set');
             this.$remove.hide();
         }
+
+        // Set background image (in case of image preview)
         if (this.$thumbnail.is('.image-thumbnail'))
             this.$thumbnail.css('background-image', 'url(\'' + attachmentUrl + '\')');
-        if (this.$filename)
-            this.$filename.text(attachmentUrl.split(/[\\/]/).pop());
-        this.$element.val(attachmentId);
 
+        // Set extension data attribute
+        this.$thumbnail.attr('data-file-extension', attachmentUrl.split('.').pop());
+
+        // Set filename label
+        if (this.$filename)
+            this.$filename.text(attachmentUrl.split(/[\\/]/).pop()).attr('href', attachmentUrl);
+
+        this.$element.val(attachmentId);
     };
 
     if (Object.prototype.hasOwnProperty.call(window, 'Fieldwork')) {
