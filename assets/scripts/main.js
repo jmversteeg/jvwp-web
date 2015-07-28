@@ -69,7 +69,7 @@
         if ($(e.target).is('a.filename'))
             return;
         e.preventDefault();
-        if (!this.attachment) {
+        if (!this.attachment || !this.attachment.url) {
             this.custom_uploader = this.createUploader();
             this.custom_uploader.once('select', this.select.bind(this));
             this.custom_uploader.once('escape', this.escape.bind(this));
@@ -87,22 +87,23 @@
             this.$reprElement.addClass('set');
             this.$thumbnail.removeClass('not-set');
             this.$remove.show();
+
+            // Set background image (in case of image preview)
+            if (this.$thumbnail.is('.image-thumbnail'))
+                this.$thumbnail.css('background-image', 'url(\'' + attachmentUrl + '\')');
+
+            // Set extension data attribute
+            this.$thumbnail.attr('data-file-extension', attachmentUrl.split('.').pop());
+
+            // Set filename label
+            if (this.$filename)
+                this.$filename.text(attachmentUrl.split(/[\\/]/).pop()).attr('href', attachmentUrl);
         } else {
             this.$reprElement.removeClass('set');
-            this.$thumbnail.addClass('not-set');
+            this.$thumbnail.addClass('not-set').css('background-image', 'none');
             this.$remove.hide();
+            this.$filename.empty();
         }
-
-        // Set background image (in case of image preview)
-        if (this.$thumbnail.is('.image-thumbnail'))
-            this.$thumbnail.css('background-image', 'url(\'' + attachmentUrl + '\')');
-
-        // Set extension data attribute
-        this.$thumbnail.attr('data-file-extension', attachmentUrl.split('.').pop());
-
-        // Set filename label
-        if (this.$filename)
-            this.$filename.text(attachmentUrl.split(/[\\/]/).pop()).attr('href', attachmentUrl);
 
         this.$element.val(attachmentId);
     };
