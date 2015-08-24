@@ -1,9 +1,3 @@
-install:
-  - npm install
-
-build:
-  - gulp
-
 purge:
   - "!build"
   - "!enqueue.php"
